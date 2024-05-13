@@ -1,0 +1,30 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="clock.css" />
+    <title>Clock</title>
+  </head>
+  <body>
+    <div class="clock">
+      <div class="clock__hours"></div>
+      <div class="clock__minutes"></div>
+      <div class="clock__seconds"></div>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+      timeTick = function () {
+        const date = new Date(),
+          mm = date.getMinutes(),
+          ss = date.getSeconds(),
+          rotateHours = 30 * date.getHours() + (mm / 60) * 30,
+          rotateMins = 6 * mm + (ss / 60) * 6,
+          rotateSec = 6 * ss
+        $('.clock__seconds').css({ transform: 'rotate(' + rotateSec + 'deg)' })
+        $('.clock__minutes').css({ transform: 'rotate(' + rotateMins + 'deg)' })
+        $('.clock__hours').css({ transform: 'rotate(' + rotateHours + 'deg)' })
+      }
+      timeTick(), setInterval(timeTick, 1e3)
+    </script>
+  </body>
+</html>
